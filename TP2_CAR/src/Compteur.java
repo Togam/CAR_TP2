@@ -23,7 +23,7 @@ public class Compteur extends Thread {
 	public void num(){
 		String array[]= text.split("\\n");
 		for(String l : array){
-//			app.countWords(l);
+			app.countWords(l);
 		}
 	}
 

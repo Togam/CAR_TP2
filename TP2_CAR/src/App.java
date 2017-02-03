@@ -71,4 +71,9 @@ public class App {
 		System.out.println("Most frequent word: " + maxEntry.getKey()
 				+ " with " + maxEntry.getValue() + " occurrences");
 	}
+
+	public void merge(App app) {
+		// TODO Auto-generated method stub
+		
+	}
 }
