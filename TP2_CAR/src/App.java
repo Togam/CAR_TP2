@@ -1,6 +1,11 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author six
@@ -72,8 +77,41 @@ public class App {
 				+ " with " + maxEntry.getValue() + " occurrences");
 	}
 
-	public void merge(App app) {
-		// TODO Auto-generated method stub
-		
+	/**
+	 * Merge deux map entre elles
+	 * 
+	 * @param secondeApp
+	 */
+	public void merge(final App secondeApp) {
+		Set<Map.Entry<String, Integer>> entries = this.map.entrySet();
+
+		for (Map.Entry<String, Integer> entry : entries) {
+			Integer secondMapValue = secondeApp.getMap().get(entry.getKey());
+			// Si la clé n'existe pas dans la deuxième map, on l'ajoute
+			if (secondMapValue == null) {
+				secondeApp.getMap().put(entry.getKey(), entry.getValue());
+			} else {
+				// Sinon, on change la clé en ajoutant le résultat entre les 2
+				// maps
+				secondeApp.getMap().replace(entry.getKey(),
+						entry.getValue() + secondMapValue);
+			}
+		}
+
+		setMap(secondeApp.getMap());
+	}
+
+	/**
+	 * @return la map
+	 */
+	public HashMap<String, Integer> getMap() {
+		return map;
+	}
+
+	/**
+	 * @param map
+	 */
+	public void setMap(final HashMap<String, Integer> map) {
+		this.map = map;
 	}
 }
