@@ -35,17 +35,20 @@ public class Main {
 			int i = 0;
 			while ((l = br.readLine()) != null) {
 				lines[i].append(l);
-				i = (i++) / nThreads;
+				// permet de répartir équitablement le nombre de ligne dans les
+				// threads
+				i = (i++) % nThreads;
 			}
 			App[] apps = new App[nThreads];
 			for (int j = 0; j < nThreads; j++) {
-				apps[i] = new App();
+				apps[j] = new App();
 			}
 
 			Compteur[] compt = new Compteur[nThreads];
 
 			for (int j = 0; j < nThreads; j++) {
-				compt[j] = new Compteur(apps[i], lines[j].toString());
+				compt[j] = new Compteur(apps[j], lines[j].toString());
+				compt[j].num();
 				compt[j].start();
 			}
 			for (int j = 0; j < nThreads; j++) {
@@ -57,12 +60,13 @@ public class Main {
 				}
 			}
 
-			for(int j=1;j<nThreads;j++){
+			for (int j = 1; j < nThreads; j++) {
 				apps[0].merge(apps[j]);
 			}
-			
+
 			Map.Entry<String, Integer> max = apps[0].findMax();
-			
+			System.out.println(max);
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

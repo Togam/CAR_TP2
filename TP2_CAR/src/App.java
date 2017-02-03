@@ -22,7 +22,7 @@ public class App {
 		String[] words = line.split("\\s");
 		for (String w : words) {
 			if (map.containsKey(w))
-				map.put(w, new Integer(map.get(w).intValue() + 1));
+				map.replace(w, new Integer(map.get(w).intValue() + 1));
 			else
 				map.put(w, new Integer(1));
 		}
