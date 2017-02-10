@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,15 +11,24 @@ import java.util.Map;
  * @author six
  * 
  */
-public class Main {
+public class Threading {
 
 	/**
 	 * @param args
 	 * @throws IOException
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void start(String[] args) throws IOException {
 
+		File f = new File(
+				args[1]);
+		System.out.println("Chemin absolu du fichier : "
+				+ f.getAbsolutePath());
+		System.out.println("Nom du fichier : " + f.getName());
+		System.out.println("Est-ce qu'il existe ? " + f.exists());
+		System.out.println("Est-ce un fichier ?" + f.isFile() + "\n");
+		
 		// nb threads
+		System.out.println("nb de Threads demandés: "+args[0]);
 		int nThreads = Integer.parseInt(args[0]);
 		StringBuilder lines[] = new StringBuilder[nThreads];
 		for (int i = 0; i < nThreads; i++) {
